@@ -2,3 +2,5 @@
 <h4><%= @page.author %></h4>
 <p><%= @page.body %></p>
 <%= link_to 'Back', pages_path %>
+<%= link_to 'Edit', edit_page_path(@page.id) %>
+<%= link_to 'Delete', page_path(@page.id), method: :delete %>

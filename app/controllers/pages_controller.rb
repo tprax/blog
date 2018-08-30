@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    @pages = Page.all
+    @pages = Page.order(created_at: :asc)
   end
 
   def show
@@ -19,6 +19,25 @@ class PagesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @page = Page.find(params[:id])
+  end
+
+  def update
+    @page = Page.find(params[:id])
+
+    if @page.update(page_params)
+      redirect_to page_path(@page.id)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    Page.find(params[:id]).destroy
+    redirect_to pages_path
   end
 
   private
